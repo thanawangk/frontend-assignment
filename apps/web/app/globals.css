@@ -1,1 +1,59 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sans: var(--font-inter);
+
+    --color-background: #ffffff;
+    --color-surface: #f0f0f0;
+
+    --color-text: #000000;
+    --color-text-secondary: #00000099;
+    --color-text-tertiary: #00000066;
+
+    --color-danger: #ff3333;
+    --color-danger-surface: #ff33331a;
+
+    --text-body-sm: 12px;
+    --text-body-sm--line-height: 1.5;
+    --text-body-sm--font-weight: 400;
+
+    --text-body-default: 14px;
+    --text-body-default--line-height: 1.5;
+    --text-body-default--font-weight: 400;
+
+    --text-body-md: 16px;
+    --text-body-md--line-height: 1.5;
+    --text-body-md--font-weight: 400;
+
+    --text-body-lg: 20px;
+    --text-body-lg--line-height: 1.5;
+    --text-body-lg--font-weight: 400;
+
+    --text-heading-4: 16px;
+    --text-heading-4--line-height: 1.2;
+    --text-heading-4--font-weight: 700;
+
+    --text-heading-3: 20px;
+    --text-heading-3--line-height: 1.2;
+    --text-heading-3--font-weight: 700;
+
+    --text-heading-2: 24px;
+    --text-heading-2--line-height: 1.2;
+    --text-heading-2--font-weight: 700;
+
+    --text-heading-1: 32px;
+    --text-heading-1--line-height: 1.2;
+    --text-heading-1--font-weight: 700;
+}
+
+@layer base {
+    html {
+        background: var(--color-background);
+    }
+
+    body {
+        background: var(--color-background);
+        color: var(--color-text);
+        font-family: var(--font-sans);
+    }
+}
