@@ -1,22 +1,29 @@
 "use client";
 
 import { useInfiniteQuery, type InfiniteData } from "@tanstack/react-query";
-import { getListProducts } from "../api/products";
+import { useAppliedFilters } from "@/stores/productFilterStore";
+import { getProductList } from "../api/products";
 import type { ProductList } from "../types";
 
 const PRODUCTS_PER_PAGE = 12;
 
-const toProductList = (pages: InfiniteData<ProductList>) =>
+const toProducts = (pages: InfiniteData<ProductList>) =>
   pages.pages.flatMap((page) => page.items);
 
 export function useInfiniteProducts() {
+  const filters = useAppliedFilters();
+
   return useInfiniteQuery({
-    queryKey: ["products", { limit: PRODUCTS_PER_PAGE }],
+    queryKey: ["products", { limit: PRODUCTS_PER_PAGE, filters }],
     initialPageParam: 0,
     queryFn: ({ pageParam }) =>
-      getListProducts({ limit: PRODUCTS_PER_PAGE, offset: pageParam }),
+      getProductList({
+        limit: PRODUCTS_PER_PAGE,
+        offset: pageParam,
+        filters,
+      }),
     getNextPageParam: (lastPage) =>
       lastPage.hasMore ? lastPage.offset + lastPage.limit : undefined,
-    select: toProductList,
+    select: toProducts,
   });
 }

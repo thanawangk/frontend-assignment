@@ -1,8 +1,16 @@
 import type { api } from "@/lib/eden";
 
-type ListProductsResponse = Awaited<
-  ReturnType<typeof api.products.get>
->["data"];
+type ProductListResponse = Awaited<ReturnType<typeof api.products.get>>["data"];
+type ColorsResponse = Awaited<ReturnType<typeof api.colors.get>>["data"];
+type SizesResponse = Awaited<ReturnType<typeof api.sizes.get>>["data"];
 
-export type ProductList = NonNullable<ListProductsResponse>;
+export type ProductList = NonNullable<ProductListResponse>;
 export type Product = ProductList["items"][number];
+
+export type Color = NonNullable<ColorsResponse>[number];
+export type Size = NonNullable<SizesResponse>[number];
+
+export interface PriceRange {
+  min: number;
+  max: number;
+}
