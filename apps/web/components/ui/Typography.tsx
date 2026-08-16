@@ -9,7 +9,8 @@ export type TypographyVariant =
   | "heading-1"
   | "heading-2"
   | "heading-3"
-  | "heading-4";
+  | "heading-4"
+  | "display-lg";
 
 const typographyVariantClass: Record<TypographyVariant, string> = {
   "body-sm": "text-body-sm",
@@ -20,6 +21,7 @@ const typographyVariantClass: Record<TypographyVariant, string> = {
   "heading-2": "text-heading-3 md:text-heading-2",
   "heading-3": "text-heading-4 md:text-heading-3",
   "heading-4": "text-heading-4",
+  "display-lg": "text-display-lg",
 };
 
 const typographyVariantElement: Record<TypographyVariant, ElementType> = {
@@ -31,6 +33,7 @@ const typographyVariantElement: Record<TypographyVariant, ElementType> = {
   "heading-2": "h2",
   "heading-3": "h3",
   "heading-4": "h4",
+  "display-lg": "h1",
 };
 
 interface TypographyProps {

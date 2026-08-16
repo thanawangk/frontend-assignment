@@ -44,6 +44,10 @@
     --text-heading-1: 32px;
     --text-heading-1--line-height: 1.2;
     --text-heading-1--font-weight: 700;
+
+    --text-display-lg: 40px;
+    --text-display-lg--line-height: 1.2;
+    --text-display-lg--font-weight: 700;
 }
 
 @layer base {
