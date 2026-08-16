@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+const PREFETCH_MARGIN = "600px";
+
 interface UseInfiniteScrollOptions {
   onLoadMore: () => void;
   enabled: boolean;
@@ -20,16 +22,18 @@ export function useInfiniteScroll({
 
   useEffect(() => {
     const trigger = triggerRef.current;
+
     if (!trigger || !enabled) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) onLoadMoreRef.current();
       },
-      { rootMargin: "600px" },
+      { rootMargin: PREFETCH_MARGIN },
     );
 
     observer.observe(trigger);
+
     return () => observer.disconnect();
   }, [enabled]);
 

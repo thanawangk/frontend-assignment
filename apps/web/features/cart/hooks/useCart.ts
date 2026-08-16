@@ -7,15 +7,32 @@ import {
   removeCartItem,
   updateCartItemQuantity,
 } from "../api/cart";
+import type { Cart, CartLine } from "../types";
 
 export const cartQueryKey = ["cart"] as const;
 
+const cartQueryOptions = {
+  queryKey: cartQueryKey,
+  queryFn: getCart,
+};
+
 export function useCart() {
-  const queryClient = useQueryClient();
-  const { data: cart, isPending } = useQuery({
-    queryKey: cartQueryKey,
-    queryFn: getCart,
+  const { data: cart, isPending } = useQuery(cartQueryOptions);
+  return { cart, isPending };
+}
+
+export function useCartLine(productId: string): CartLine | undefined {
+  const { data: line } = useQuery({
+    ...cartQueryOptions,
+    select: (cart: Cart) =>
+      cart.items.find((item) => item.productId === productId),
   });
+
+  return line;
+}
+
+export function useCartMutations() {
+  const queryClient = useQueryClient();
 
   const refreshCart = () =>
     queryClient.invalidateQueries({ queryKey: cartQueryKey });
@@ -37,8 +54,6 @@ export function useCart() {
   });
 
   return {
-    cart,
-    isPending,
     addItem,
     setQuantity,
     removeItem,

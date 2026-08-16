@@ -6,7 +6,7 @@ import { useProductOptions } from "@/features/products/hooks/useProductOptions";
 import { formatPrice } from "@/lib/formatPrice";
 import { t } from "@/lib/i18n";
 import { CartQuantityStepper } from "./CartQuantityStepper";
-import { useCart } from "../hooks/useCart";
+import { useCartMutations } from "../hooks/useCart";
 import type { CartLine } from "../types";
 import { Trash2 } from "lucide-react";
 
@@ -15,7 +15,7 @@ interface CartLineItemProps {
 }
 
 export function CartLineItem({ line }: CartLineItemProps) {
-  const { setQuantity, removeItem, isUpdating } = useCart();
+  const { setQuantity, removeItem, isUpdating } = useCartMutations();
   const { colorName, sizeName } = useProductOptions();
   const { product } = line;
 

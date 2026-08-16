@@ -3,16 +3,15 @@
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui";
 import { CartQuantityStepper } from "@/features/cart/components/CartQuantityStepper";
-import { useCart } from "@/features/cart/hooks/useCart";
+import { useCartLine, useCartMutations } from "@/features/cart/hooks/useCart";
 
 interface ProductCartControlProps {
   productId: string;
 }
 
 export function ProductCartControl({ productId }: ProductCartControlProps) {
-  const { cart, addItem, setQuantity, removeItem, isUpdating } = useCart();
-
-  const line = cart?.items.find((item) => item.productId === productId);
+  const line = useCartLine(productId);
+  const { addItem, setQuantity, removeItem, isUpdating } = useCartMutations();
 
   if (!line) {
     return (
