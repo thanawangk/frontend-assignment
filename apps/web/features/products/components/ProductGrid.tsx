@@ -1,0 +1,71 @@
+"use client";
+
+import { Typography } from "@/components/ui";
+import { t } from "@/lib/i18n";
+import { ProductCard } from "./ProductCard";
+import { ProductCardSkeleton } from "./ProductCardSkeleton";
+import { useInfiniteProducts } from "../hooks/useInfiniteProducts";
+import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
+
+const SKELETON_COUNT = 8;
+
+export function ProductGrid() {
+  const {
+    data: products,
+    isPending,
+    isError,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteProducts();
+
+  const loadMoreRef = useInfiniteScroll({
+    onLoadMore: fetchNextPage,
+    enabled: hasNextPage && !isFetchingNextPage,
+  });
+
+  if (isError) {
+    return (
+      <div className="flex flex-col items-center gap-4 py-16">
+        <Typography variant="body-md">{t("products.error")}</Typography>
+        <button
+          type="button"
+          onClick={() => refetch()}
+          className="cursor-pointer underline underline-offset-2"
+        >
+          {t("products.retry")}
+        </button>
+      </div>
+    );
+  }
+
+  if (!isPending && products?.length === 0) {
+    return (
+      <Typography variant="body-md" className="block py-16 text-center">
+        {t("products.empty")}
+      </Typography>
+    );
+  }
+
+  return (
+    <div>
+      <ul className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
+        {products?.map((product) => (
+          <li key={product.id}>
+            <ProductCard product={product} />
+          </li>
+        ))}
+
+        {(isPending || isFetchingNextPage) &&
+          Array.from({ length: SKELETON_COUNT }, (_, index) => (
+            <li key={`skeleton-${index}`}>
+              <ProductCardSkeleton />
+            </li>
+          ))}
+      </ul>
+
+      <div ref={loadMoreRef} aria-hidden className="h-px" />
+    </div>
+  );
+}
