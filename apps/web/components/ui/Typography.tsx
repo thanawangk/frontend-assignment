@@ -21,7 +21,7 @@ const typographyVariantClass: Record<TypographyVariant, string> = {
   "heading-2": "text-heading-3 md:text-heading-2",
   "heading-3": "text-heading-4 md:text-heading-3",
   "heading-4": "text-heading-4",
-  "display-lg": "text-display-lg",
+  "display-lg": "text-heading-1 md:text-display-lg",
 };
 
 const typographyVariantElement: Record<TypographyVariant, ElementType> = {

@@ -1,10 +1,9 @@
 "use client";
 
-import { Minus, Plus } from "lucide-react";
-import { Button, Typography } from "@/components/ui";
+import { Plus } from "lucide-react";
+import { Button } from "@/components/ui";
+import { CartQuantityStepper } from "@/features/cart/components/CartQuantityStepper";
 import { useCart } from "@/features/cart/hooks/useCart";
-
-const MAX_QUANTITY = 99;
 
 interface ProductCartControlProps {
   productId: string;
@@ -15,16 +14,12 @@ export function ProductCartControl({ productId }: ProductCartControlProps) {
 
   const line = cart?.items.find((item) => item.productId === productId);
 
-  const handleAddToCart = () => {
-    addItem.mutate(productId);
-  };
-
   if (!line) {
     return (
       <Button
         variant="icon"
         disabled={isUpdating}
-        onClick={handleAddToCart}
+        onClick={() => addItem.mutate(productId)}
         className="size-10 bg-background shadow-md"
       >
         <Plus className="size-5" />
@@ -32,30 +27,19 @@ export function ProductCartControl({ productId }: ProductCartControlProps) {
     );
   }
 
-  const decrease = () =>
-    line.quantity === 1
-      ? removeItem.mutate(line.id)
-      : setQuantity.mutate({ itemId: line.id, quantity: line.quantity - 1 });
-
   return (
-    <div className="flex items-center gap-1 rounded-full bg-background p-0.5 md:p-1 shadow-md">
-      <Button variant="icon" disabled={isUpdating} onClick={decrease}>
-        <Minus className="size-4" />
-      </Button>
-
-      <Typography variant="body-default" className="min-w-5 text-center">
-        {line.quantity}
-      </Typography>
-
-      <Button
-        variant="icon"
-        disabled={isUpdating || line.quantity >= MAX_QUANTITY}
-        onClick={() =>
-          setQuantity.mutate({ itemId: line.id, quantity: line.quantity + 1 })
-        }
-      >
-        <Plus className="size-4" />
-      </Button>
-    </div>
+    <CartQuantityStepper
+      quantity={line.quantity}
+      disabled={isUpdating}
+      onDecrease={() =>
+        line.quantity === 1
+          ? removeItem.mutate(line.id)
+          : setQuantity.mutate({ itemId: line.id, quantity: line.quantity - 1 })
+      }
+      onIncrease={() =>
+        setQuantity.mutate({ itemId: line.id, quantity: line.quantity + 1 })
+      }
+      className="bg-background p-0.5 shadow-md md:p-1"
+    />
   );
 }
