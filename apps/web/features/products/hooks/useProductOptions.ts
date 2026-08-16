@@ -6,6 +6,7 @@ import type { Size } from "../types";
 
 const OPTIONS_STALE_TIME = Infinity;
 
+// Smallest to largest, as the design's pills read.
 const SIZE_ORDER = [
   "xx-small",
   "x-small",
@@ -20,6 +21,7 @@ const SIZE_ORDER = [
 
 const sizeRank = (size: Size) => {
   const rank = SIZE_ORDER.indexOf(size.id);
+
   return rank === -1 ? SIZE_ORDER.length : rank;
 };
 
@@ -31,7 +33,11 @@ export function useProductOptions() {
         queryFn: getColors,
         staleTime: OPTIONS_STALE_TIME,
       },
-      { queryKey: ["sizes"], queryFn: getSizes, staleTime: OPTIONS_STALE_TIME },
+      {
+        queryKey: ["sizes"],
+        queryFn: getSizes,
+        staleTime: OPTIONS_STALE_TIME,
+      },
     ],
   });
 

@@ -8,7 +8,7 @@ import { ColorSwatches } from "./ColorSwatches";
 import { FilterSection } from "./FilterSection";
 import { PriceRangeSlider } from "./PriceRangeSlider";
 import { SizePills } from "./SizePills";
-import { useFilterPanel } from "../../hooks/useFilterPanel";
+import { useProductFilterForm } from "../../hooks/useProductFilterForm";
 
 interface FilterPanelProps {
   showHeading?: boolean;
@@ -21,18 +21,11 @@ export function FilterPanel({
   onApplied,
   className,
 }: FilterPanelProps) {
-  const {
-    colors,
-    sizes,
-    draft,
-    setPrice,
-    toggleColor,
-    toggleSize,
-    applyDraft,
-  } = useFilterPanel();
+  const { colors, sizes, draft, setPrice, toggleColor, toggleSize, submit } =
+    useProductFilterForm();
 
   const handleApply = () => {
-    applyDraft();
+    submit();
     onApplied?.();
   };
 

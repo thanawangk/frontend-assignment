@@ -2,7 +2,7 @@
 
 import { Typography } from "@/components/ui";
 import { formatPrice } from "@/lib/formatPrice";
-import { PRICE_CEILING, PRICE_FLOOR } from "@/stores/productFilterStore";
+import { PRICE_CEILING, PRICE_FLOOR } from "@/stores/productStore";
 import type { PriceRange } from "../../types";
 
 const THUMB_SIZE_PX = 16;

@@ -4,10 +4,7 @@ import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import { t } from "@/lib/i18n";
-import {
-  useSearchKeyword,
-  useSetSearchKeyword,
-} from "@/stores/productFilterStore";
+import { useSearchKeyword, useSetSearchKeyword } from "@/stores/productStore";
 
 interface SearchBarProps {
   className?: string;

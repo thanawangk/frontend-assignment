@@ -5,14 +5,14 @@ import {
   useApplyFilters,
   useAppliedFilters,
   type ProductFilters,
-} from "@/stores/productFilterStore";
+} from "@/stores/productStore";
 import { useProductOptions } from "./useProductOptions";
 import type { PriceRange } from "../types";
 
 const toggleId = (ids: string[], id: string) =>
   ids.includes(id) ? ids.filter((current) => current !== id) : [...ids, id];
 
-export function useFilterPanel() {
+export function useProductFilterForm() {
   const { colors, sizes } = useProductOptions();
 
   const appliedFilters = useAppliedFilters();
@@ -42,10 +42,7 @@ export function useFilterPanel() {
     [],
   );
 
-  const applyDraft = useCallback(
-    () => applyFilters(draft),
-    [applyFilters, draft],
-  );
+  const submit = useCallback(() => applyFilters(draft), [applyFilters, draft]);
 
   return {
     colors,
@@ -54,6 +51,6 @@ export function useFilterPanel() {
     setPrice,
     toggleColor,
     toggleSize,
-    applyDraft,
+    submit,
   };
 }

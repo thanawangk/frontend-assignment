@@ -1,5 +1,5 @@
 import { api } from "@/lib/eden";
-import type { ProductFilters } from "@/stores/productFilterStore";
+import type { ProductFilters } from "@/stores/productStore";
 import type { Color, ProductList, Size } from "../types";
 
 export interface GetProductListParams {

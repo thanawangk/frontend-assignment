@@ -4,8 +4,8 @@ import { Button, Typography } from "@/components/ui";
 import { t } from "@/lib/i18n";
 import { ProductCard } from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductCardSkeleton";
-import { useInfiniteProducts } from "../hooks/useInfiniteProducts";
-import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
+import { useProductList } from "../hooks/useProductList";
+import { useInfiniteScroll } from "@/lib/hooks/useInfiniteScroll";
 
 const SKELETON_COUNT = 8;
 
@@ -18,7 +18,7 @@ export function ProductGrid() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteProducts();
+  } = useProductList();
 
   const loadMoreRef = useInfiniteScroll({
     onLoadMore: fetchNextPage,
