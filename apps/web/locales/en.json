@@ -1,4 +1,7 @@
 {
   "promotionBanner.message": "Sign up and get 20% off to your first order.",
-  "promotionBanner.signUpAction": "Sign Up Now"
+  "promotionBanner.signUpAction": "Sign Up Now",
+
+  "siteHeader.home.label": "SHOP.CO",
+  "siteHeader.searchBar.placeholder": "Search for products..."
 }

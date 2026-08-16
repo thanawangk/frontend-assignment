@@ -11,20 +11,22 @@ export function PromotionBanner() {
   if (isDismissed) return null;
 
   return (
-    <div className="flex items-center bg-black text-white px-4 py-2 lg:px-24">
-      <Typography className="flex-1 text-center">
-        {t("promotionBanner.message")}
-        <Button variant="link" className="ml-1">
-          <Typography className="font-medium">
-            {t("promotionBanner.signUpAction")}
-          </Typography>
-        </Button>
-      </Typography>
+    <div className="bg-black text-white">
+      <div className="flex items-center py-2 mx-4 md:mx-8 lg:mx-26">
+        <Typography className="flex-1 text-center">
+          {t("promotionBanner.message")}
+          <Button variant="link" className="ml-1">
+            <Typography className="font-medium">
+              {t("promotionBanner.signUpAction")}
+            </Typography>
+          </Button>
+        </Typography>
 
-      <div className="hidden shrink-0 md:block">
-        <Button variant="icon" onClick={() => setIsDismissed(true)}>
-          <X className="size-5" />
-        </Button>
+        <div className="hidden shrink-0 md:block">
+          <Button variant="icon" onClick={() => setIsDismissed(true)}>
+            <X className="size-5" />
+          </Button>
+        </div>
       </div>
     </div>
   );
