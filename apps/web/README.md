@@ -12,12 +12,11 @@ following were added:
 
 | Library            | Used for                | Reason                                                                                                                |
 | ------------------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **TanStack Query** | Everything from the API | Caching, infinite scroll, and request de-duplication are the whole job here; writing that by hand is where bugs live     |
-| **Zustand**        | What the shopper chose  | Filters and search are shared by the sidebar, the mobile drawer, and the header — too far apart for props, too small for Context |
-| **lucide-react**   | Icons                   | Matches the design's icon style and tree-shakes per icon                                                                                                                  |
+| **TanStack Query** | Everything from the API | Caching, infinite scroll, and request de-duplication.                                                                 |
+| **Zustand**        | What the shopper chose  | Filters and search are shared by the sidebar, the mobile drawer, and the header                                       |
+| **lucide-react**   | Icons                   | Matches the design's icon style.                                                                                      |
 
-**No component library.** The design is specific enough that most of one would
-be overridden. Three primitives cover it — `Button`, `Typography`, `Spinner` —
+**No component library.** Three primitives cover it — `Button`, `Typography`, `Spinner` —
 and the colours and type scale live as Tailwind theme tokens, so
 `text-heading-2` and `bg-danger-surface` mean the same thing in every file.
 
