@@ -30,10 +30,15 @@ interface ThumbPriceLabelProps {
 }
 
 function ThumbPriceLabel({ amount }: ThumbPriceLabelProps) {
+  const percent = toTrackPercent(amount);
+
   return (
     <span
-      className="absolute -translate-x-1/2"
-      style={{ left: toThumbCenter(amount) }}
+      className="absolute"
+      style={{
+        left: toThumbCenter(amount),
+        transform: `translateX(-${percent}%)`,
+      }}
     >
       <Typography variant="body-md" className="font-medium whitespace-nowrap">
         {formatPrice(amount)}
