@@ -23,7 +23,7 @@ export function SizePills({ sizes, selectedIds, onToggle }: SizePillsProps) {
             onClick={() => onToggle(size.id)}
             aria-pressed={isSelected}
             className={cn(
-              "cursor-pointer rounded-full px-5 py-2 transition-colors",
+              "cursor-pointer rounded-full px-6 py-2 transition-colors",
               isSelected
                 ? "bg-black text-white"
                 : "bg-surface text-text-secondary hover:bg-black/10",

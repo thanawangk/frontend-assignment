@@ -67,7 +67,7 @@ export function FilterPanel({
         </FilterSection>
       </div>
 
-      <div className="border-t border-black/10 py-6">
+      <div className="border-t border-black/10 pt-6 md:py-6">
         <Button className="w-full" onClick={handleApply}>
           {t("filters.apply")}
         </Button>

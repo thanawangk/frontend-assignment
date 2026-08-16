@@ -51,8 +51,8 @@ export function FilterDrawer() {
             aria-label={t("filters.title")}
             className="absolute inset-x-0 bottom-0 flex h-[50dvh] flex-col rounded-t-3xl bg-background px-4 pb-6"
           >
-            <div className="flex shrink-0 items-center justify-between bg-background py-5">
-              <Typography variant="heading-4">{t("filters.title")}</Typography>
+            <div className="flex shrink-0 items-center justify-between py-5">
+              <Typography variant="heading-3">{t("filters.title")}</Typography>
               <Button variant="icon" onClick={() => setIsOpen(false)}>
                 <X className="size-5" />
               </Button>
