@@ -12,6 +12,7 @@ const DELIVERY_FEE = 15;
 
 interface CartSummaryProps {
   cart: Cart;
+  checkout: ReturnType<typeof useCheckout>["checkout"];
 }
 
 interface SummaryRowProps {
@@ -41,10 +42,7 @@ function SummaryRow({ label, value, emphasis, danger }: SummaryRowProps) {
   );
 }
 
-export function CartSummary({ cart }: CartSummaryProps) {
-  const checkout = useCheckout();
-  const isCheckingOut = checkout.isPending || checkout.isSuccess;
-
+export function CartSummary({ cart, checkout }: CartSummaryProps) {
   const discountPercent =
     cart.subtotal > 0
       ? Math.round((cart.totalDiscount / cart.subtotal) * 100)
@@ -81,15 +79,9 @@ export function CartSummary({ cart }: CartSummaryProps) {
       </div>
 
       <div className="flex flex-col gap-2 md:pb-10">
-        <Button
-          className="w-full"
-          disabled={isCheckingOut}
-          onClick={() => checkout.mutate()}
-        >
-          {isCheckingOut
-            ? t("cart.checkout.pending")
-            : t("cart.checkout.button")}
-          {!isCheckingOut && <ArrowRight className="size-5" />}
+        <Button className="w-full" onClick={() => checkout.mutate()}>
+          {t("cart.checkout.button")}
+          <ArrowRight className="size-5" />
         </Button>
 
         {checkout.isError && (

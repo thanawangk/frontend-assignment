@@ -7,11 +7,13 @@ import { t } from "@/lib/i18n";
 import { CartLineItem } from "./CartLineItem";
 import { CartSummary } from "./CartSummary";
 import { useCart } from "../hooks/useCart";
+import { useCheckout } from "../hooks/useCheckout";
 
 export function CartView() {
-  const { cart, isPending } = useCart();
+  const { cart, isPending: isCartPending } = useCart();
+  const { checkout, isCheckingOut } = useCheckout();
 
-  if (isPending) {
+  if (isCartPending || isCheckingOut) {
     return (
       <div className="flex justify-center py-16">
         <Spinner />
@@ -45,7 +47,7 @@ export function CartView() {
       </div>
 
       <div className="lg:w-[400px] lg:shrink-0">
-        <CartSummary cart={cart} />
+        <CartSummary cart={cart} checkout={checkout} />
       </div>
     </div>
   );

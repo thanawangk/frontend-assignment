@@ -2,19 +2,23 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { checkout } from "../api/cart";
+import { checkout as checkoutRequest } from "../api/cart";
 import { cartQueryKey } from "./useCart";
 
-// Checks out and sends redirect to the success page with the new order id.
 export function useCheckout() {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: checkout,
+  const checkout = useMutation({
+    mutationFn: checkoutRequest,
     onSuccess: ({ orderId }) => {
       queryClient.invalidateQueries({ queryKey: cartQueryKey });
       router.push(`/checkout/success?orderId=${encodeURIComponent(orderId)}`);
     },
   });
+
+  return {
+    checkout,
+    isCheckingOut: checkout.isPending || checkout.isSuccess,
+  };
 }
