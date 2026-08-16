@@ -6,6 +6,7 @@ export interface GetProductListParams {
   limit: number;
   offset: number;
   filters: ProductFilters;
+  searchKeyword: string;
 }
 
 const toIdList = (ids: string[]) => (ids.length > 0 ? ids : undefined);
@@ -26,11 +27,13 @@ export async function getProductList({
   limit,
   offset,
   filters,
+  searchKeyword,
 }: GetProductListParams): Promise<ProductList> {
   const { data, error } = await api.products.get({
     query: {
       limit,
       offset,
+      q: searchKeyword || undefined,
       minPrice: filters.price.min,
       maxPrice: filters.price.max,
       colorIds: toIdList(filters.colorIds),

@@ -18,14 +18,19 @@ export const DEFAULT_PRODUCT_FILTERS: ProductFilters = {
 
 interface ProductFilterStore {
   appliedFilters: ProductFilters;
+  searchKeyword: string;
   applyFilters: (filters: ProductFilters) => void;
+  setSearchKeyword: (searchKeyword: string) => void;
   clearFilters: () => void;
 }
 
 export const useProductFilterStore = create<ProductFilterStore>((set) => ({
   appliedFilters: DEFAULT_PRODUCT_FILTERS,
+  searchKeyword: "",
   applyFilters: (filters) => set({ appliedFilters: filters }),
-  clearFilters: () => set({ appliedFilters: DEFAULT_PRODUCT_FILTERS }),
+  setSearchKeyword: (searchKeyword) => set({ searchKeyword }),
+  clearFilters: () =>
+    set({ appliedFilters: DEFAULT_PRODUCT_FILTERS, searchKeyword: "" }),
 }));
 
 export const useAppliedFilters = () =>
@@ -33,3 +38,9 @@ export const useAppliedFilters = () =>
 
 export const useApplyFilters = () =>
   useProductFilterStore((store) => store.applyFilters);
+
+export const useSearchKeyword = () =>
+  useProductFilterStore((store) => store.searchKeyword);
+
+export const useSetSearchKeyword = () =>
+  useProductFilterStore((store) => store.setSearchKeyword);
