@@ -13,7 +13,7 @@ export function SiteHeader() {
 
   return (
     <header className="border-b border-black/10 mx-4 md:mx-8 lg:mx-26">
-      <div className="flex items-center py-4 md:py-6 gap-4 md:gap-10">
+      <div className="flex items-center py-5 gap-4 md:gap-10">
         {isSearchOpen ? (
           <>
             <SearchBar className="flex-1 md:hidden" autoFocus />

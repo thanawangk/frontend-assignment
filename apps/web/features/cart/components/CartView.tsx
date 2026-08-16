@@ -33,9 +33,9 @@ export function CartView() {
 
   return (
     <div className="flex flex-col gap-5 lg:flex-row lg:items-start">
-      <div className="flex flex-col divide-y divide-black/10 rounded-3xl border border-black/10 lg:flex-1">
+      <div className="flex flex-col divide-y divide-black/10 rounded-3xl border border-black/10 px-4 md:px-5 lg:flex-1">
         {cart.items.map((line) => (
-          <div key={line.id} className="p-4 md:p-5">
+          <div key={line.id} className="py-4 md:py-5">
             <CartLineItem line={line} />
           </div>
         ))}

@@ -54,7 +54,7 @@ export function CartSummary({ cart }: CartSummaryProps) {
     <div className="flex flex-col gap-5 rounded-3xl border border-black/10 p-5 md:p-6">
       <Typography variant="heading-2">{t("cart.summary")}</Typography>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3">
         <SummaryRow
           label={t("cart.subtotal")}
           value={formatPrice(cart.subtotal)}
@@ -80,7 +80,7 @@ export function CartSummary({ cart }: CartSummaryProps) {
         />
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 md:pb-10">
         <Button
           className="w-full"
           disabled={isCheckingOut}

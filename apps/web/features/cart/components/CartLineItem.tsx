@@ -23,7 +23,7 @@ export function CartLineItem({ line }: CartLineItemProps) {
 
   return (
     <article className="flex gap-4">
-      <div className="relative size-24 shrink-0 overflow-hidden rounded-lg bg-surface md:size-32">
+      <div className="relative size-24 md:size-32 shrink-0 self-start overflow-hidden rounded-lg bg-surface">
         <Image
           src={product.imageUrl}
           alt={product.name}
@@ -34,7 +34,7 @@ export function CartLineItem({ line }: CartLineItemProps) {
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex items-center justify-between">
           <Typography variant="heading-4" className="line-clamp-2">
             {product.name}
           </Typography>
@@ -49,15 +49,21 @@ export function CartLineItem({ line }: CartLineItemProps) {
           </Button>
         </div>
 
-        <Typography variant="body-sm" className="text-text-secondary">
-          {t("cart.size")}: {sizeName(product.sizeId) ?? "-"}
+        <Typography variant="body-sm">
+          {t("cart.size")}:{" "}
+          <span className="text-text-secondary">
+            {sizeName(product.sizeId) ?? "-"}
+          </span>
         </Typography>
-        <Typography variant="body-sm" className="text-text-secondary">
-          {t("cart.color")}: {colorName(product.colorId) ?? "-"}
+        <Typography variant="body-sm">
+          {t("cart.color")}:{" "}
+          <span className="text-text-secondary">
+            {colorName(product.colorId) ?? "-"}
+          </span>
         </Typography>
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-2">
-          <Typography variant="heading-3">
+          <Typography variant="heading-2">
             {formatPrice(product.discountedPrice)}
           </Typography>
 
