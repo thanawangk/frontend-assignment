@@ -3,6 +3,10 @@ import { cn } from "@/lib/cn";
 
 export type ButtonVariant = "primary" | "link" | "icon";
 
+const baseClass =
+  "inline-flex cursor-pointer items-center justify-center gap-2" +
+  "disabled:cursor-not-allowed disabled:opacity-50";
+
 const buttonVariantClass: Record<ButtonVariant, string> = {
   primary:
     "rounded-full bg-black px-8 py-3 text-body-md text-white hover:opacity-90",
@@ -32,11 +36,7 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={cn(
-        "cursor-pointer disabled:cursor-not-allowed disabled:opacity-50",
-        buttonVariantClass[variant],
-        className,
-      )}
+      className={cn(baseClass, buttonVariantClass[variant], className)}
     >
       {children}
     </button>

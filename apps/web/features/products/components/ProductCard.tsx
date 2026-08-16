@@ -3,6 +3,7 @@ import { Typography } from "@/components/ui";
 import { formatPrice } from "@/lib/formatPrice";
 import { ProductRating } from "./ProductRating";
 import type { Product } from "../types";
+import { ProductCartControl } from "./ProductCartControl";
 
 interface ProductCardProps {
   product: Product;
@@ -21,6 +22,10 @@ export function ProductCard({ product }: ProductCardProps) {
           sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
           className="object-cover"
         />
+
+        <div className="absolute right-3 bottom-3">
+          <ProductCartControl productId={product.id} />
+        </div>
       </div>
 
       <Typography variant="heading-3" className="mt-2">
