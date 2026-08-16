@@ -13,14 +13,13 @@ export function ProductCard({ product }: ProductCardProps) {
   const hasDiscount = product.percentageDiscount > 0;
 
   return (
-    <article className="flex flex-col gap-2">
-      <div className="relative aspect-square overflow-hidden rounded-2xl bg-surface">
+    <article className="group flex flex-col gap-2">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-surface transition-shadow duration-300 group-hover:shadow-lg">
         <Image
           src={product.imageUrl}
           alt={product.name}
           fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
         />
 
         <div className="absolute right-3 bottom-3">

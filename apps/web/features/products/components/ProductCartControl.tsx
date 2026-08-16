@@ -20,7 +20,7 @@ export function ProductCartControl({ productId }: ProductCartControlProps) {
         variant="icon"
         disabled={isUpdating}
         onClick={() => addItem.mutate(productId)}
-        className="size-10 bg-background shadow-md"
+        className="size-10 bg-background shadow-md hover:opacity-90"
       >
         <Plus className="size-5" />
       </Button>
