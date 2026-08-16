@@ -16,7 +16,7 @@ export function FilterSection({ title, children }: FilterSectionProps) {
   const contentId = useId();
 
   return (
-    <div className="border-t border-black/10 py-5">
+    <div className="border-t border-black/10 py-6">
       <button
         type="button"
         onClick={() => setIsExpanded((expanded) => !expanded)}
@@ -24,7 +24,7 @@ export function FilterSection({ title, children }: FilterSectionProps) {
         aria-controls={contentId}
         className="flex w-full cursor-pointer items-center justify-between"
       >
-        <Typography variant="heading-4">{title}</Typography>
+        <Typography variant="heading-3">{title}</Typography>
         <ChevronUp
           className={cn(
             "size-5 transition-transform",

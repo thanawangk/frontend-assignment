@@ -39,8 +39,8 @@ export function FilterPanel({
   return (
     <div className={cn("flex flex-col", className)}>
       {showHeading && (
-        <div className="flex items-center justify-between pb-5">
-          <Typography variant="heading-4">{t("filters.title")}</Typography>
+        <div className="flex items-center justify-between pb-6">
+          <Typography variant="heading-3">{t("filters.title")}</Typography>
           <SlidersHorizontal className="size-5 text-text-tertiary" />
         </div>
       )}
@@ -67,9 +67,11 @@ export function FilterPanel({
         </FilterSection>
       </div>
 
-      <Button className="mt-5 w-full" onClick={handleApply}>
-        {t("filters.apply")}
-      </Button>
+      <div className="border-t border-black/10 py-6">
+        <Button className="w-full" onClick={handleApply}>
+          {t("filters.apply")}
+        </Button>
+      </div>
     </div>
   );
 }

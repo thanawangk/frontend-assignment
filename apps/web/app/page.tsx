@@ -7,7 +7,7 @@ import { t } from "@/lib/i18n";
 export default function CategoryPage() {
   return (
     <div className="flex gap-5 py-6 md:py-16">
-      <aside className="hidden w-[295px] shrink-0 lg:block">
+      <aside className="hidden w-[295px] lg:block">
         <FilterPanel className="rounded-3xl border border-black/10 p-6" />
       </aside>
 
