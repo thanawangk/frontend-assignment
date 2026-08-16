@@ -1,10 +1,11 @@
 "use client";
 
-import { CircleUserRound, Menu, Search, ShoppingCart, X } from "lucide-react";
+import { CircleUserRound, Menu, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { SearchBar } from "./SearchBar";
 import { Button } from "@/components/ui";
+import { CartLink } from "@/features/cart/components/CartLink";
 import { t } from "@/lib/i18n";
 
 export function SiteHeader() {
@@ -44,9 +45,7 @@ export function SiteHeader() {
                 <Search className="size-5" />
               </Button>
 
-              <Link href="/cart" className="rounded-full p-1 hover:opacity-70">
-                <ShoppingCart className="size-5" />
-              </Link>
+              <CartLink />
 
               <Button variant="icon">
                 <CircleUserRound className="size-5" />
