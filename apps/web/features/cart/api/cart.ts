@@ -29,3 +29,9 @@ export async function removeCartItem(itemId: string): Promise<CartItem> {
   if (error) throw error;
   return data;
 }
+
+export async function checkout(): Promise<{ orderId: string }> {
+  const { data, error } = await api.cart.checkout.post();
+  if (error) throw error;
+  return data;
+}

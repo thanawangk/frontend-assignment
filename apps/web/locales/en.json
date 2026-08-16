@@ -14,5 +14,27 @@
   "filters.price": "Price",
   "filters.colors": "Colors",
   "filters.size": "Size",
-  "filters.apply": "Apply Filter"
+  "filters.apply": "Apply Filter",
+
+  "cart.title": "Your cart",
+  "cart.summary": "Order Summary",
+  "cart.totalItems": "Items",
+  "cart.items": "items",
+  "cart.subtotal": "Subtotal",
+  "cart.deliveryFee": "Delivery Fee",
+  "cart.discount": "Discount",
+  "cart.total": "Total",
+  "cart.checkout.button": "Go to Checkout",
+  "cart.checkout.pending": "Placing your order...",
+  "cart.checkout.error": "Checkout failed. Your cart may be empty.",
+  "cart.size": "Size",
+  "cart.color": "Color",
+  "cart.loading": "Loading your cart...",
+  "cart.empty": "Your cart is empty.",
+  "cart.continueShopping": "Continue shopping",
+
+  "checkout.success.title": "Thanks for your order",
+  "checkout.success.message": "Your order is confirmed",
+  "checkout.success.orderId": "Order ID",
+  "checkout.success.continue": "Continue shopping"
 }
