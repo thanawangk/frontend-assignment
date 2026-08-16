@@ -1,7 +1,8 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Typography } from "@/components/ui";
+import { buttonClass, Spinner, Typography } from "@/components/ui";
 import { t } from "@/lib/i18n";
 import { CartLineItem } from "./CartLineItem";
 import { CartSummary } from "./CartSummary";
@@ -12,20 +13,22 @@ export function CartView() {
 
   if (isPending) {
     return (
-      <Typography variant="body-md" className="block py-16 text-center">
-        {t("cart.loading")}
-      </Typography>
+      <div className="flex justify-center py-16">
+        <Spinner />
+      </div>
     );
   }
 
   if (!cart || cart.items.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-4 py-16">
-        <Typography variant="body-md">{t("cart.empty")}</Typography>
-        <Link href="/" className="underline underline-offset-2">
-          <Typography variant="body-md">
-            {t("cart.continueShopping")}
-          </Typography>
+      <div className="flex flex-col items-center gap-6 py-16">
+        <Typography variant="body-md" className="text-text-secondary">
+          {t("cart.empty")}
+        </Typography>
+
+        <Link href="/" className={buttonClass()}>
+          {t("cart.continue")}
+          <ArrowRight className="size-5" />
         </Link>
       </div>
     );

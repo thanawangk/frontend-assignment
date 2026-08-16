@@ -29,9 +29,8 @@
   "cart.checkout.error": "Checkout failed. Your cart may be empty.",
   "cart.size": "Size",
   "cart.color": "Color",
-  "cart.loading": "Loading your cart...",
-  "cart.empty": "Your cart is empty.",
-  "cart.continueShopping": "Continue shopping",
+  "cart.empty": "Your cart is empty",
+  "cart.continue": "Continue shopping",
 
   "checkout.success.title": "Thanks for your order",
   "checkout.success.message": "Your order is confirmed",

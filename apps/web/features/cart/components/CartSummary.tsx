@@ -89,7 +89,7 @@ export function CartSummary({ cart }: CartSummaryProps) {
           {isCheckingOut
             ? t("cart.checkout.pending")
             : t("cart.checkout.button")}
-          <ArrowRight className="size-5" />
+          {!isCheckingOut && <ArrowRight className="size-5" />}
         </Button>
 
         {checkout.isError && (

@@ -1,8 +1,8 @@
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Typography } from "@/components/ui";
+import { buttonClass, Typography } from "@/components/ui";
 import { t } from "@/lib/i18n";
 
 export const metadata: Metadata = { title: "Order confirmed - SHOP.CO" };
@@ -19,7 +19,7 @@ export default async function CheckoutSuccessPage({
 
   return (
     <div className="flex flex-col items-center gap-4 py-16 text-center md:py-24">
-      <CheckCircle2 className="size-14" />
+      <CheckCircle2 className="size-14" color="green" />
 
       <Typography variant="heading-1">{t("checkout.success.title")}</Typography>
 
@@ -34,10 +34,9 @@ export default async function CheckoutSuccessPage({
         <Typography variant="heading-4">{orderId}</Typography>
       </div>
 
-      <Link href="/" className="mt-4 underline underline-offset-2">
-        <Typography variant="body-md">
-          {t("checkout.success.continue")}
-        </Typography>
+      <Link href="/" className={buttonClass({ className: "mt-4" })}>
+        {t("checkout.success.continue")}
+        <ArrowRight className="size-5" />
       </Link>
     </div>
   );

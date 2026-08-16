@@ -9,7 +9,8 @@ const baseClass =
   "disabled:cursor-not-allowed disabled:opacity-50";
 
 const buttonVariantClass: Record<ButtonVariant, string> = {
-  primary: "rounded-full bg-black px-8 py-3 text-white hover:opacity-90",
+  primary:
+    "rounded-full bg-black px-8 py-3 text-white hover:bg-black/85 active:bg-black/75",
   link: "font-medium hover:underline underline-offset-4",
   icon: "rounded-full p-1 hover:opacity-70",
 };
@@ -20,13 +21,29 @@ const defaultTextVariant: Record<ButtonVariant, TypographyVariant> = {
   icon: "body-default",
 };
 
-interface ButtonProps {
+interface ButtonStyleOptions {
   variant?: ButtonVariant;
   textVariant?: TypographyVariant;
+  className?: string;
+}
+
+export function buttonClass({
+  variant = "primary",
+  textVariant,
+  className,
+}: ButtonStyleOptions = {}) {
+  return cn(
+    baseClass,
+    buttonVariantClass[variant],
+    typographyVariantClass[textVariant ?? defaultTextVariant[variant]],
+    className,
+  );
+}
+
+interface ButtonProps extends ButtonStyleOptions {
   type?: "button" | "submit";
   onClick?: () => void;
   disabled?: boolean;
-  className?: string;
   children: ReactNode;
 }
 
@@ -44,12 +61,7 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={cn(
-        baseClass,
-        buttonVariantClass[variant],
-        typographyVariantClass[textVariant ?? defaultTextVariant[variant]],
-        className,
-      )}
+      className={buttonClass({ variant, textVariant, className })}
     >
       {children}
     </button>
