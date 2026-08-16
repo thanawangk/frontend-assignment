@@ -5,15 +5,18 @@ import { formatPrice } from "@/lib/formatPrice";
 import { PRICE_CEILING, PRICE_FLOOR } from "@/stores/productFilterStore";
 import type { PriceRange } from "../../types";
 
-interface PriceRangeSliderProps {
-  value: PriceRange;
-  onChange: (value: PriceRange) => void;
-}
+const THUMB_SIZE_PX = 16;
 
-const toPercent = (amount: number) =>
+const toTrackPercent = (amount: number) =>
   ((amount - PRICE_FLOOR) / (PRICE_CEILING - PRICE_FLOOR)) * 100;
 
-const thumbClass =
+const toThumbCenter = (amount: number) => {
+  const percent = toTrackPercent(amount);
+
+  return `calc(${percent}% + ${((50 - percent) * THUMB_SIZE_PX) / 100}px)`;
+};
+
+const rangeInputClass =
   "pointer-events-none absolute inset-x-0 h-5 appearance-none bg-transparent " +
   "[&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:size-4 " +
   "[&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full " +
@@ -22,12 +25,34 @@ const thumbClass =
   "[&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full " +
   "[&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-black";
 
-export function PriceRangeSlider({ value, onChange }: PriceRangeSliderProps) {
-  const handleMinChange = (next: number) =>
-    onChange({ ...value, min: Math.min(next, value.max) });
+interface ThumbPriceLabelProps {
+  amount: number;
+}
 
-  const handleMaxChange = (next: number) =>
-    onChange({ ...value, max: Math.max(next, value.min) });
+function ThumbPriceLabel({ amount }: ThumbPriceLabelProps) {
+  return (
+    <span
+      className="absolute -translate-x-1/2"
+      style={{ left: toThumbCenter(amount) }}
+    >
+      <Typography variant="body-md" className="font-medium whitespace-nowrap">
+        {formatPrice(amount)}
+      </Typography>
+    </span>
+  );
+}
+
+interface PriceRangeSliderProps {
+  value: PriceRange;
+  onChange: (value: PriceRange) => void;
+}
+
+export function PriceRangeSlider({ value, onChange }: PriceRangeSliderProps) {
+  const changeLowerBound = (amount: number) =>
+    onChange({ ...value, min: Math.min(amount, value.max) });
+
+  const changeUpperBound = (amount: number) =>
+    onChange({ ...value, max: Math.max(amount, value.min) });
 
   return (
     <div className="flex flex-col gap-4">
@@ -36,8 +61,8 @@ export function PriceRangeSlider({ value, onChange }: PriceRangeSliderProps) {
         <div
           className="absolute top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-black"
           style={{
-            left: `${toPercent(value.min)}%`,
-            right: `${100 - toPercent(value.max)}%`,
+            left: `${toTrackPercent(value.min)}%`,
+            right: `${100 - toTrackPercent(value.max)}%`,
           }}
         />
 
@@ -46,28 +71,22 @@ export function PriceRangeSlider({ value, onChange }: PriceRangeSliderProps) {
           min={PRICE_FLOOR}
           max={PRICE_CEILING}
           value={value.min}
-          onChange={(event) => handleMinChange(Number(event.target.value))}
-          aria-label="Minimum price"
-          className={thumbClass}
+          onChange={(event) => changeLowerBound(Number(event.target.value))}
+          className={rangeInputClass}
         />
         <input
           type="range"
           min={PRICE_FLOOR}
           max={PRICE_CEILING}
           value={value.max}
-          onChange={(event) => handleMaxChange(Number(event.target.value))}
-          aria-label="Maximum price"
-          className={thumbClass}
+          onChange={(event) => changeUpperBound(Number(event.target.value))}
+          className={rangeInputClass}
         />
       </div>
 
-      <div className="flex justify-between">
-        <Typography variant="body-md" className="font-medium">
-          {formatPrice(value.min)}
-        </Typography>
-        <Typography variant="body-md" className="font-medium">
-          {formatPrice(value.max)}
-        </Typography>
+      <div className="relative h-5">
+        <ThumbPriceLabel amount={value.min} />
+        <ThumbPriceLabel amount={value.max} />
       </div>
     </div>
   );
