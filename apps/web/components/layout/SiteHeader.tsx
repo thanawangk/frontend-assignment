@@ -4,7 +4,7 @@ import { CircleUserRound, Menu, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { SearchBar } from "./SearchBar";
-import { Button } from "@/components/ui";
+import { Button, Typography } from "@/components/ui";
 import { CartLink } from "@/features/cart/components/CartLink";
 import { t } from "@/lib/i18n";
 
@@ -13,7 +13,7 @@ export function SiteHeader() {
 
   return (
     <header className="border-b border-black/10 mx-4 md:mx-8 lg:mx-26">
-      <div className="flex items-center py-4 gap-4 md:gap-10">
+      <div className="flex items-center py-6 gap-4 md:gap-10">
         {isSearchOpen ? (
           <>
             <SearchBar className="flex-1 md:hidden" autoFocus />
@@ -27,11 +27,10 @@ export function SiteHeader() {
               <Menu className="size-5" />
             </Button>
 
-            <Link
-              href="/"
-              className="text-heading-2 md:text-heading-1 hover:opacity-70"
-            >
-              {t("siteHeader.home.label")}
+            <Link href="/" className="hover:opacity-70">
+              <Typography variant="heading-1">
+                {t("siteHeader.home.label")}
+              </Typography>
             </Link>
 
             <SearchBar className="hidden flex-1 md:flex" />

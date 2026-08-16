@@ -67,8 +67,8 @@ export function FilterPanel({
         </FilterSection>
       </div>
 
-      <Button className="mt-5 w-full shrink-0" onClick={handleApply}>
-        <Typography variant="body-md">{t("filters.apply")}</Typography>
+      <Button className="mt-5 w-full" onClick={handleApply}>
+        {t("filters.apply")}
       </Button>
     </div>
   );

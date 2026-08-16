@@ -6,9 +6,9 @@
   "siteHeader.searchBar.placeholder": "Search for products...",
 
   "products.title": "Clothes",
-  "products.error": "Could not load products.",
+  "products.error": "Could not load products",
   "products.retry": "Try again",
-  "products.empty": "No products found.",
+  "products.empty": "No products found",
 
   "filters.title": "Filters",
   "filters.price": "Price",

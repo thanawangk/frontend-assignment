@@ -29,7 +29,7 @@ export function SizePills({ sizes, selectedIds, onToggle }: SizePillsProps) {
                 : "bg-surface text-text-secondary hover:bg-black/10",
             )}
           >
-            <Typography variant="body-default">{size.name}</Typography>
+            <Typography>{size.name}</Typography>
           </button>
         );
       })}

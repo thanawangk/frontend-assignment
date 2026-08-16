@@ -43,7 +43,7 @@ export function CartLineItem({ line }: CartLineItemProps) {
             variant="icon"
             disabled={isUpdating}
             onClick={() => removeItem.mutate(line.id)}
-            className="shrink-0 text-danger"
+            className="text-danger"
           >
             <Trash2 className="size-5" />
           </Button>

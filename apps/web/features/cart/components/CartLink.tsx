@@ -2,7 +2,6 @@
 
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-import { t } from "@/lib/i18n";
 import { useCart } from "../hooks/useCart";
 
 const MAX_BADGE_COUNT = 99;

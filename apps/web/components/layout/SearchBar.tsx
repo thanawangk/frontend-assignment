@@ -23,7 +23,6 @@ export function SearchBar({ className, autoFocus }: SearchBarProps) {
 
   useEffect(() => {
     const timer = setTimeout(() => setSearchKeyword(inputValue.trim()), 800);
-
     return () => clearTimeout(timer);
   }, [inputValue, setSearchKeyword]);
 

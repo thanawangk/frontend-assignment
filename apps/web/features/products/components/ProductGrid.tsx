@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography } from "@/components/ui";
+import { Button, Typography } from "@/components/ui";
 import { t } from "@/lib/i18n";
 import { ProductCard } from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductCardSkeleton";
@@ -29,13 +29,9 @@ export function ProductGrid() {
     return (
       <div className="flex flex-col items-center gap-4 py-16">
         <Typography variant="body-md">{t("products.error")}</Typography>
-        <button
-          type="button"
-          onClick={() => refetch()}
-          className="cursor-pointer underline underline-offset-2"
-        >
+        <Button textVariant="body-md" variant="link" onClick={() => refetch()}>
           {t("products.retry")}
-        </button>
+        </Button>
       </div>
     );
   }

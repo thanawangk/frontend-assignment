@@ -16,9 +16,7 @@ export function PromotionBanner() {
         <Typography className="flex-1 text-center">
           {t("promotionBanner.message")}
           <Button variant="link" className="ml-1">
-            <Typography className="font-medium">
-              {t("promotionBanner.signUpAction")}
-            </Typography>
+            {t("promotionBanner.signUpAction")}
           </Button>
         </Typography>
 

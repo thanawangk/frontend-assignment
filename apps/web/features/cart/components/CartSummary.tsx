@@ -86,11 +86,9 @@ export function CartSummary({ cart }: CartSummaryProps) {
           disabled={isCheckingOut}
           onClick={() => checkout.mutate()}
         >
-          <Typography variant="body-md">
-            {isCheckingOut
-              ? t("cart.checkout.pending")
-              : t("cart.checkout.button")}
-          </Typography>
+          {isCheckingOut
+            ? t("cart.checkout.pending")
+            : t("cart.checkout.button")}
           <ArrowRight className="size-5" />
         </Button>
 

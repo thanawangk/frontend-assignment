@@ -12,7 +12,7 @@ export type TypographyVariant =
   | "heading-4"
   | "display-lg";
 
-const typographyVariantClass: Record<TypographyVariant, string> = {
+export const typographyVariantClass: Record<TypographyVariant, string> = {
   "body-sm": "text-body-sm",
   "body-default": "text-body-sm md:text-body-default",
   "body-md": "text-body-default md:text-body-md",
